@@ -8,6 +8,16 @@ import sys
 from lynx_realestate import __author__, __author_email__, __license__, __version__, __year__, SUITE_LABEL
 
 
+def _ticker_completer(prefix, **kw):
+    """Dynamic completer that returns cached tickers for this agent's mode."""
+    try:
+        from lynx_investor_core.storage import list_cached_tickers
+        items = list_cached_tickers() or []
+        return [t["ticker"] for t in items if t["ticker"].startswith(prefix.upper())]
+    except Exception:
+        return []
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="lynx-realestate",
@@ -29,7 +39,8 @@ def build_parser():
                           help="Production mode: use data/ for persistent cache")
     run_mode.add_argument("-t", "--testing-mode", action="store_const", const="testing", dest="run_mode",
                           help="Testing mode: use data_test/ (isolated, always fresh)")
-    parser.add_argument("identifier", nargs="?", help="Ticker symbol, ISIN, or company name")
+    ident_arg = parser.add_argument("identifier", nargs="?", help="Ticker symbol, ISIN, or company name")
+    ident_arg.completer = _ticker_completer
     ui_mode = parser.add_mutually_exclusive_group()
     ui_mode.add_argument("-i", "--interactive-mode", action="store_true", dest="interactive")
     ui_mode.add_argument("-tui", "--textual-ui", action="store_true", dest="tui")
@@ -63,6 +74,12 @@ def build_parser():
 
 def run_cli():
     parser = build_parser()
+
+    try:
+        import argcomplete
+        argcomplete.autocomplete(parser)
+    except ImportError:
+        pass  # argcomplete optional at runtime
 
     # Hidden features
     if "--b2m" in sys.argv:

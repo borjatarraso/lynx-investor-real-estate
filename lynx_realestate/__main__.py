@@ -1,3 +1,4 @@
+# PYTHON_ARGCOMPLETE_OK
 """Entry point for lynx-realestate."""
 
 from lynx_realestate.cli import run_cli

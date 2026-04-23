@@ -25,7 +25,7 @@ _core_storage.set_base_dir(Path(__file__).resolve().parent.parent)
 # Agent-specific identity
 # ---------------------------------------------------------------------------
 
-__version__ = "5.4"  # lynx-investor-real-estate version (independent of core)
+__version__ = "5.5"  # lynx-investor-real-estate version (independent of core)
 
 APP_NAME = "Lynx Real Estate Analysis"
 APP_SHORT_NAME = "Real Estate Analysis"

@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0] - 2026-04-23
+
+Part of **Lince Investor Suite v4.0** coordinated release.
+
+### Added
+- URL-safety enforcement for every RSS-sourced news URL and every
+  `webbrowser.open(...)` site — powered by
+  `lynx_investor_core.urlsafe`.
+- Sector-specific ASCII art in easter-egg visuals (replaces the shared
+  pickaxe motif that leaked into non-mining sectors).
+
+### Changed
+- Aligned every user-visible sector string with the package's real
+  sector: titles, subtitles, app class names, splash taglines, news
+  keywords, User-Agent headers, themes, export headers, and fortune
+  quotes no longer carry template leftovers.
+- Depends on `lynx-investor-core>=4.0`.
+
 All notable changes to Lynx Real Estate Analysis are documented here.
 
 ## [3.0] - 2026-04-22

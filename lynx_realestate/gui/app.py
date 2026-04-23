@@ -10,6 +10,7 @@ from typing import Optional
 
 from lynx_realestate.metrics.relevance import get_relevance
 from lynx_realestate.models import AnalysisReport, CompanyStage, CompanyTier, Relevance
+from lynx_investor_core.urlsafe import safe_webbrowser_open
 
 # ---------------------------------------------------------------------------
 # Colour palette (Catppuccin Mocha)
@@ -2357,13 +2358,11 @@ class LynxRealEstateGUI:
         thread.start()
 
     def _open_news_gui(self, article) -> None:
-        import webbrowser
         if not article.url:
             return
-        try:
-            webbrowser.open(article.url)
-        except Exception:
-            pass
+        if not safe_webbrowser_open(article.url):
+            messagebox.showerror("Unsafe URL", "Refused: unsafe URL")
+            return
 
         if not self._suppress_news_dialog:
             result = messagebox.askyesno(

@@ -10,6 +10,7 @@ from typing import Optional
 
 from lynx_realestate.metrics.relevance import get_relevance
 from lynx_realestate.models import AnalysisReport, CompanyStage, CompanyTier, Relevance
+from lynx_investor_core.gui_themes import ThemeCycler, apply_theme
 from lynx_investor_core.urlsafe import safe_webbrowser_open
 
 # ---------------------------------------------------------------------------
@@ -332,6 +333,12 @@ class LynxRealEstateGUI:
         self._build_toolbar()
         self._build_result_area()
         self._show_welcome()
+
+        # Suite-wide theme cycling (Ctrl+T / Ctrl+Shift+T)
+        self._theme_cycler = ThemeCycler(self.root)
+        self._theme_cycler.apply_current()
+        self.root.bind_all("<Control-t>", lambda _: self._theme_cycler.next())
+        self.root.bind_all("<Control-T>", lambda _: self._theme_cycler.previous())
 
         # Pre-fill and auto-analyze if ticker given
         identifier = getattr(self.cli_args, "identifier", None)
@@ -850,6 +857,7 @@ class LynxRealEstateGUI:
             ("Enter", "Analyze ticker"),
             ("Escape", "Clear / Reset"),
             ("Ctrl+P", "Show this controls dialog"),
+            ("Ctrl+T", "Cycle theme"),
             ("Scroll", "Navigate results"),
             ("Click section header", "Expand / Collapse section"),
             ("Click ?", "Explain section or metric"),

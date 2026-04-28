@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+
+from lynx_investor_core.translations import t as _t
 import threading
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -193,7 +195,7 @@ class SplashScreen:
         self.bar_fill.place(x=0, y=0, relheight=1)
 
         self.loading_label = tk.Label(
-            center, text="Loading...", font=FONT_SMALL,
+            center, text=_t("loading"), font=FONT_SMALL,
             bg=BG, fg=FG_DIM,
         )
         self.loading_label.pack()
@@ -443,7 +445,7 @@ class LynxRealEstateGUI:
 
         # Export button (left group, after checkboxes)
         self.btn_export = tk.Button(
-            toolbar, text="  Export  ", font=FONT_BTN,
+            toolbar, text=f"  {_t('btn_export')}  ", font=FONT_BTN,
             bg=BTN_SECONDARY_BG, fg=BTN_SECONDARY_FG,
             activebackground=BG_HOVER, activeforeground=FG,
             relief=tk.FLAT, padx=6, pady=3, cursor="hand2",
@@ -483,7 +485,7 @@ class LynxRealEstateGUI:
 
         # Quit (rightmost)
         self.btn_quit = tk.Button(
-            toolbar, text="  Quit  ", font=FONT_BTN,
+            toolbar, text=f"  {_t('btn_quit')}  ", font=FONT_BTN,
             bg=BTN_DANGER_BG, fg=BTN_FG,
             activebackground="#e06080", activeforeground=BTN_FG,
             relief=tk.FLAT, padx=8, pady=3, cursor="hand2",
@@ -493,7 +495,7 @@ class LynxRealEstateGUI:
 
         # About (before Quit)
         self.btn_about = tk.Button(
-            toolbar, text="  About  ", font=FONT_BTN,
+            toolbar, text=f"  {_t('btn_about')}  ", font=FONT_BTN,
             bg=BTN_SECONDARY_BG, fg=BTN_SECONDARY_FG,
             activebackground=BG_HOVER, activeforeground=FG,
             relief=tk.FLAT, padx=6, pady=3, cursor="hand2",
@@ -706,7 +708,7 @@ class LynxRealEstateGUI:
             thread.start()
 
         tk.Button(
-            win, text="  Export  ", font=FONT_BTN,
+            win, text=f"  {_t('btn_export')}  ", font=FONT_BTN,
             bg=BTN_BG, fg=BTN_FG, activebackground=BTN_ACTIVE,
             relief=tk.FLAT, padx=14, pady=4, cursor="hand2",
             command=_do_export,
@@ -810,7 +812,7 @@ class LynxRealEstateGUI:
         ).pack(side=tk.LEFT, padx=(0, 6))
 
         tk.Button(
-            btn_row, text="  Close  ", font=FONT_BTN,
+            btn_row, text=f"  {_t('close')}  ", font=FONT_BTN,
             bg=BTN_SECONDARY_BG, fg=BTN_SECONDARY_FG,
             activebackground=BG_HOVER, activeforeground=FG,
             relief=tk.FLAT, padx=12, pady=4, cursor="hand2",
@@ -856,7 +858,7 @@ class LynxRealEstateGUI:
         btn_frame = tk.Frame(win, bg=BG)
         btn_frame.pack(pady=(0, 16))
         tk.Button(
-            btn_frame, text="  Close  ", font=FONT_BTN,
+            btn_frame, text=f"  {_t('close')}  ", font=FONT_BTN,
             bg=BTN_BG, fg=BTN_FG, activebackground=BTN_ACTIVE,
             relief=tk.FLAT, padx=14, pady=4, cursor="hand2",
             command=win.destroy,
@@ -1023,7 +1025,7 @@ class LynxRealEstateGUI:
         close_frame = tk.Frame(win, bg=BG)
         close_frame.pack(fill=tk.X, pady=(8, 16))
         tk.Button(
-            close_frame, text="  Close  ", font=(_FAMILY, 11, "bold"),
+            close_frame, text=f"  {_t('close')}  ", font=(_FAMILY, 11, "bold"),
             bg=BTN_BG, fg=BTN_FG,
             activebackground=BTN_ACTIVE, activeforeground=BTN_FG,
             relief=tk.FLAT, padx=20, pady=6, cursor="hand2",
@@ -1252,7 +1254,7 @@ class LynxRealEstateGUI:
 
         # Close button
         tk.Button(
-            win, text="  Close  ", font=(_FAMILY, 11, "bold"),
+            win, text=f"  {_t('close')}  ", font=(_FAMILY, 11, "bold"),
             bg="#ff4444", fg="#ffffff",
             activebackground="#cc3333", activeforeground="#ffffff",
             relief=tk.FLAT, padx=20, pady=6, cursor="hand2",
@@ -2601,7 +2603,7 @@ class LynxRealEstateGUI:
         btn_frame = tk.Frame(win, bg=BG)
         btn_frame.pack(fill=tk.X, pady=(8, 16))
         tk.Button(
-            btn_frame, text="  Close  ", font=FONT_BTN,
+            btn_frame, text=f"  {_t('close')}  ", font=FONT_BTN,
             bg=BTN_BG, fg=BTN_FG, activebackground=BTN_ACTIVE,
             relief=tk.FLAT, padx=14, pady=4, cursor="hand2",
             command=win.destroy,
